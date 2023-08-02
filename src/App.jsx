@@ -9,6 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -35,7 +37,7 @@ function ModeSelect() {
           </div>
         </MenuItem>
         <MenuItem value="dark">
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DarkModeOutlinedIcon fontSize="small" />
             Dark
           </div>
@@ -45,51 +47,43 @@ function ModeSelect() {
   );
 }
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  return (
-    <Button
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light');
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  );
-}
-
 function App() {
   return (
-    <>
-      <ModeSelect />
-      <hr />
-      <ModeToggle />
-      <hr />
-      <div>Hoang Thien</div>
-      <Button variant="outlined">Primary</Button>
-      <Button variant="outlined" disabled>
-        Disabled
-      </Button>
-      <Button variant="outlined" href="#outlined-buttons">
-        Link
-      </Button>
-      <Button
-        onClick={() => {
-          alert('clicked');
+    <Container disableGutters maxWidth={false} sx={{ height: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          height: (theme) => theme.trello.appBarHeight,
+          width: '100%',
+          backgroundColor: 'primary.light',
         }}
       >
-        Click me
-      </Button>
-      <br />
-      <AccessAlarm />
-      <ThreeDRotation />
-      <HomeIcon color="primary" />
-      <HomeIcon color="secondary" />
-      <HomeIcon color="success" />
-      <HomeIcon color="action" />
-      <HomeIcon color="disabled" />
-      <HomeIcon sx={{ color: pink[500] }} />
-    </>
+        <ModeSelect />
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          height: (theme) => theme.trello.boarBarHeight,
+          width: '100%',
+          backgroundColor: 'primary.dark',
+        }}
+      >
+        Board Bar
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: 'primary.main',
+          width: '100%',
+          height: (theme) => `calc(100vh - ${theme.trello.appBarHeight} - ${theme.trello.boarBarHeight})`,
+        }}
+      >
+        Board container
+      </Box>
+    </Container>
   );
 }
 
