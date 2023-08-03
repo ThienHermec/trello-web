@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import { Box } from '@mui/material';
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -15,26 +16,41 @@ function ModeSelect() {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="label-select-dark-light-mode">Mode</InputLabel>
+    <FormControl size="small" sx={{ minWidth: 120 }}>
+      <InputLabel sx={{ color: '#fff', '&.Mui-focused': { color: '#fff' } }} id="label-select-dark-light-mode">
+        Mode
+      </InputLabel>
       <Select
         labelId="label-select-dark-light-mode"
         id="demo-select-small"
         value={mode}
         label="Mode"
         onChange={handleChange}
+        sx={{
+          color: '#fff',
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: '#fff',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#fff',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#fff',
+          },
+          '.MuiSvgIcon-root': { color: '#fff' },
+        }}
       >
         <MenuItem value="light">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Box style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <LightModeIcon fontSize="small" />
             Light
-          </div>
+          </Box>
         </MenuItem>
         <MenuItem value="dark">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Box style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DarkModeOutlinedIcon fontSize="small" />
             Dark
-          </div>
+          </Box>
         </MenuItem>
       </Select>
     </FormControl>
